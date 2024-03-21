@@ -1,14 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.REQUEST_STATUS = exports.serverData = void 0;
-class serverData {
-    constructor(requestStatus, studioName, projectName) {
-        this.requestStatus = requestStatus;
-        this.studioName = studioName;
-        this.projectName = projectName;
-    }
-}
-exports.serverData = serverData;
+exports.REQUEST_STATUS = void 0;
 var REQUEST_STATUS;
 (function (REQUEST_STATUS) {
     REQUEST_STATUS[REQUEST_STATUS["UP"] = 0] = "UP";

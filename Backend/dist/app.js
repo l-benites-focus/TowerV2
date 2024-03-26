@@ -1,4 +1,13 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    function adopt(value) { return value instanceof P ? value : new P(function (resolve) { resolve(value); }); }
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : adopt(result.value).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -15,8 +24,6 @@ server.use(body_parser_1.default.urlencoded({
 server.use(helmet_1.default.contentSecurityPolicy({
     useDefaults: true,
     directives: {
-        'Accept': 'application/json',
-        'Content-Type': 'text/plain',
         'Authorization': 'Basic YTph',
     },
 }));
@@ -24,16 +31,33 @@ server.get('/', (req, res) => {
     res.status(200);
     res.send('WORKING');
 });
-server.get('/requestStatus', (req, res) => {
-    var response = {};
-    var promiseList = [];
-    for (const project of JSON.parse((0, fs_1.readFileSync)((0, path_1.join)("resources\\", "project_Names.json"), 'utf-8'))) {
-        promiseList.push((fetch(`http://qkbld-${project}.westeurope.cloudapp.azure.com:8810/rest/version`, { headers: new Headers([['Authorization', 'Basic YTph']]) })
-            .then(json => { response[project] = json.status ? json.status : 200; })
-            .catch(() => response[project] = 404)));
-    }
-    Promise.all(promiseList).then(() => res.send(JSON.stringify(response)));
+server.on('exit', code => {
+    // Only synchronous calls
+    console.log(`Process exited with code: ${code}`);
 });
+server.get('/requestStatus', (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var response = {};
+    //var promiseList : Promise<number | void>[] = []
+    for (const project of JSON.parse((0, fs_1.readFileSync)((0, path_1.join)("resources\\", "project_Names.json"), 'utf-8'))) {
+        const result = yield fetch(`http://qkbld-${project}.westeurope.cloudapp.azure.com:8810/rest/version`, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Basic YTph'
+            }
+        }).catch(err => { });
+        response[project] = result ? result.status : 404;
+        //     promiseList.push(
+        //         (
+        //             fetch(`http://qkbld-${project}.westeurope.cloudapp.azure.com:8810/rest/version`, 
+        //             {headers :new Headers([['Authorization','Basic YTph']]
+        //         )}).then(fetchResult =>{ response[project] = fetchResult.status ? fetchResult.status:200})
+        //             .catch(()=>response[project]=404))
+        //     )
+        // }
+    }
+    res.send(JSON.stringify(response));
+    res.status(200);
+}));
 server.listen(8080, () => {
     console.log("I'm listening");
-});
+}).on("err", error => console.log(error));

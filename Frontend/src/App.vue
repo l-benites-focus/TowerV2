@@ -1,8 +1,27 @@
+<script lang="ts">
+export default {
+    data() {
+      return {
+        data: []
+      }
+    },
+    methods: {
+      async getData() {
+        const res = await fetch("http://localhost:8080/requestStatus");
+        console.log(res)
+        const finalRes = await res.json();
+        this.data = finalRes;
+      }
+    },
+  mounted() {
+    this.getData()
+  }
+  }
+</script>
 <script setup lang="ts">
 import card from './components/card.vue';
-import exData from './ressources/exData.json'
 </script>
 
 <template >
-    <card v-for="(value,key) in exData" :projectName="key" studioName='matt' :code="value" uptime='matt'/>
+    <card v-for="(value,key) in data " :projectName="key" studioName='matt' :code="value" :uptime="100"/>
 </template>

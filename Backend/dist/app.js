@@ -17,7 +17,9 @@ const express_1 = __importDefault(require("express"));
 const path_1 = require("path");
 const fs_1 = require("fs");
 const helmet_1 = __importDefault(require("helmet"));
+const router_1 = __importDefault(require("./router"));
 const server = (0, express_1.default)();
+server.use(router_1.default);
 server.use(body_parser_1.default.urlencoded({
     extended: true
 }));
@@ -39,7 +41,8 @@ server.get('/requestStatus', (req, res) => __awaiter(void 0, void 0, void 0, fun
     var response = {};
     //var promiseList : Promise<number | void>[] = []
     for (const project of JSON.parse((0, fs_1.readFileSync)((0, path_1.join)("resources\\", "project_Names.json"), 'utf-8'))) {
-        const result = yield fetch(`http://qkbld-${project}.westeurope.cloudapp.azure.com:8810/rest/version`, {
+        const qkbld = project == "laurens" ? "qkbld" : "quickbuild";
+        const result = yield fetch(`http://${qkbld}-${project}.westeurope.cloudapp.azure.com:8810/rest/version`, {
             method: "GET",
             headers: {
                 'Authorization': 'Basic YTph'
@@ -55,8 +58,8 @@ server.get('/requestStatus', (req, res) => __awaiter(void 0, void 0, void 0, fun
         //     )
         // }
     }
-    res.send(JSON.stringify(response));
     res.status(200);
+    res.send(JSON.stringify(response));
 }));
 server.listen(8080, () => {
     console.log("I'm listening");

@@ -3,15 +3,16 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "server/index.js",
+  "main": "D:/Repos/TowerV2/Backend/dist/app.js",
   "scripts": {
     "dev:frontend": "vite",
-    "dev:backend": "nodemon server/index.js",
+    "dev:backend": "nodemon D:/Repos/TowerV2/Backend/dist/app.js",
     "dev": "concurrently 'npm:dev:frontend' 'npm:dev:backend'",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/node": "^20.11.30",
     "ejs": "^3.1.9",
     "express": "^4.19.1",
     "vue": "^3.4.21"

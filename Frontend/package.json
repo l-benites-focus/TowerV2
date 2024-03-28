@@ -3,10 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "D:/Repos/TowerV2/Backend/dist/app.js",
+  "main": "./src/app.js",
   "scripts": {
     "dev:frontend": "vite",
-    "dev:backend": "nodemon D:/Repos/TowerV2/Backend/dist/app.js",
+    "dev:backend": "nodemon D:/Repos/TowerV2/Backend/dist/src/app.js",
     "dev": "concurrently 'npm:dev:frontend' 'npm:dev:backend'",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"

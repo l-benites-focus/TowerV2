@@ -1,0 +1,27 @@
+<script lang="ts">
+  import json from './.vite/manifest.json'
+  export default {
+      data() {
+        return {
+          myJson: json
+        }
+      },
+    }
+</script>
+
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Vue + TS</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="http://localhost:8080/@vite/client"></script>
+    <script type="module" src="http://localhost:8080/<%= main %>"></script>
+    <link rel="stylesheet" href="http://localhost:8080/<%= css %>" />
+  </body>
+</html>

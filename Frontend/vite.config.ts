@@ -6,8 +6,12 @@ export default defineConfig({
   plugins: [vue()],
   build: {
         manifest: true,
+        outDir: "../Backend/dist",
         rollupOptions: {
-         input: './src/main.js',
+         input: './src/main.ts',
        },
       },
+  server: {
+    origin: 'http://127.0.0.1:8080',
+  },
 })

@@ -6,6 +6,7 @@ import helmet from 'helmet';
 import router from './router';
 const server = express();
 
+server.use('/assets', express.static(__dirname + '/assets'));
 server.use(router);
 server.use(bodyParser.urlencoded({
     extended: true
@@ -33,7 +34,8 @@ server.get('/requestStatus', async (req, res) =>{
         //var promiseList : Promise<number | void>[] = []
         for (const project of JSON.parse(readFileSync(join("resources\\", "project_Names.json"), 'utf-8'))) {
             const qkbld = project == "laurens" ? "qkbld":"quickbuild"
-            const result = await fetch(`http://${qkbld}-${project}.westeurope.cloudapp.azure.com:8810/rest/version`,{
+            const url = project == "laurens-qkbld" ? `http://laurens-qkbld.westeurope.cloudapp.azure.com:8810/rest/version`:`http://${qkbld}-${project}.westeurope.cloudapp.azure.com:8810/rest/version`
+            const result = await fetch(url,{
                 method:"GET", 
                 headers :{
                 'Authorization':'Basic YTph'}

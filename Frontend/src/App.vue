@@ -23,5 +23,5 @@ import card from './components/card.vue';
 </script>
 
 <template >
-    <card v-for="(value,key) in data " :projectName="key" studioName='matt' :code="value" :uptime="100"/>
+    <card v-for="(value,key) in data " :projectName="key.toString()" studioName='matt' :code="value" :uptime="100"/>
 </template>

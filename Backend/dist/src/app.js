@@ -43,7 +43,8 @@ server.get('/requestStatus', (req, res) => __awaiter(void 0, void 0, void 0, fun
     //var promiseList : Promise<number | void>[] = []
     for (const project of JSON.parse((0, fs_1.readFileSync)((0, path_1.join)("resources\\", "project_Names.json"), 'utf-8'))) {
         const qkbld = project == "laurens" ? "qkbld" : "quickbuild";
-        const result = yield fetch(`http://${qkbld}-${project}.westeurope.cloudapp.azure.com:8810/rest/version`, {
+        const url = project == "laurens-qkbld" ? `http://laurens-qkbld.westeurope.cloudapp.azure.com:8810/rest/version` : `http://${qkbld}-${project}.westeurope.cloudapp.azure.com:8810/rest/version`;
+        const result = yield fetch(url, {
             method: "GET",
             headers: {
                 'Authorization': 'Basic YTph'

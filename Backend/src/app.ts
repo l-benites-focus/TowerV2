@@ -31,24 +31,15 @@ server.on('exit', code => {
 
 server.get('/requestStatus', async (req, res) =>{
         var response: { [projectName: string] : number; } = {};
-        //var promiseList : Promise<number | void>[] = []
         for (const project of JSON.parse(readFileSync(join("resources\\", "project_Names.json"), 'utf-8'))) {
-            const qkbld = project == "laurens" ? "qkbld":"quickbuild"
+            const qkbld = project == "laurens" ? "quickbuild":"quickbuild"
             const url = project == "laurens-qkbld" ? `http://laurens-qkbld.westeurope.cloudapp.azure.com:8810/rest/version`:`http://${qkbld}-${project}.westeurope.cloudapp.azure.com:8810/rest/version`
             const result = await fetch(url,{
                 method:"GET", 
                 headers :{
-                'Authorization':'Basic YTph'}
+                    "Authorization": `Basic ${Buffer.from("tower:tf20DnN2zs").toString('base64')}`}
             }).catch(err => {})
             response[project] = result ? result.status:404
-        //     promiseList.push(
-        //         (
-        //             fetch(`http://qkbld-${project}.westeurope.cloudapp.azure.com:8810/rest/version`, 
-        //             {headers :new Headers([['Authorization','Basic YTph']]
-        //         )}).then(fetchResult =>{ response[project] = fetchResult.status ? fetchResult.status:200})
-        //             .catch(()=>response[project]=404))
-        //     )
-        // }
     }
     res.status(200)
     res.send(JSON.stringify(response))

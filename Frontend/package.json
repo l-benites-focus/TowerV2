@@ -3,10 +3,10 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "main": "./src/app.js",
+  "main": "./server/index.js",
   "scripts": {
     "dev:frontend": "vite",
-    "dev:backend": "nodemon D:/Repos/TowerV2/Backend/dist/src/app.js",
+    "dev:backend": "nodemon ./server/index.js",
     "dev": "concurrently 'npm:dev:frontend' 'npm:dev:backend'",
     "build": "vue-tsc && vite build",
     "preview": "vite preview"
@@ -15,7 +15,8 @@
     "@types/node": "^20.11.30",
     "ejs": "^3.1.9",
     "express": "^4.19.1",
-    "vue": "^3.4.21"
+    "vue": "^3.4.21",
+    "vue-async-computed": "^4.0.1"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^5.0.4",

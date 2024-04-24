@@ -1,5 +1,5 @@
 import express from "express";
-import myJson from "../dist/.vite/manifest.json"
+import myJson from "../dist/src/.vite/manifest.json"
 const router = express.Router();
 
 router.get("/", (_req, res) => {

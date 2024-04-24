@@ -38,6 +38,7 @@ function uncheckAll(id:string, tag:string){
   }
 }
 function updateDisplay(_text:string,_sort:SORT_ORDER,_display:SHOW_ONLY = display.value, shouldSwap:boolean = true ){
+  console.log(_sort !== sort.value)
   text.value = _text
   show.value = props
   //#region show only
@@ -73,7 +74,8 @@ function updateDisplay(_text:string,_sort:SORT_ORDER,_display:SHOW_ONLY = displa
     sort.value = sort.value==_sort? SORT_ORDER.NONE:_sort;
   }
   //#endregion
-  update.value++;
+    show.value = show.value.filter(x => x.projectName.includes(_text)|| x.studioName.includes(_text))
+    update.value++
 }
 const sortCategory = [
   {id:"Name", sort_order:SORT_ORDER.NAME},
@@ -100,12 +102,13 @@ import devopsLogo from '/public/pcicd.png'
       </div>
       <div class="rightHeaderContent">
         <input type="checkbox" class="bgPrimary hover-effect">
-      <input type="text" class="bgPrimary hover-effect" placeholder="Search a project..." id="inputField" @input="event => {if(event.target)updateDisplay((event.target as HTMLTextAreaElement).value,sort,display,false)}">
+      <input type="text" class="bgPrimary hover-effect" placeholder="Search a project..." id="inputField" @input="event => {if(event.target && ![1,2].includes((event.target as HTMLTextAreaElement).value.length))updateDisplay((event.target as HTMLTextAreaElement).value,sort,display,false)}">
         <div id="focus-Logo">
           <img  :src="devopsLogo"/>
         </div>
       </div>
     </header>
+    <div id="colorStrip"></div>
     <div id="body-content" compilerOptions.isCustomElement>
       <div id="top-bar">
         <div id="sort-bar"></div>
@@ -115,12 +118,12 @@ import devopsLogo from '/public/pcicd.png'
         <p class="sortCategory mainText">Sort By</p>
         <div v-for="(object) in sortCategory" class="Category">
           <input type="checkbox" :id="object.id" name="drone" :value="object.id" @click="uncheckAll(object.id,'displaySortBox'), updateDisplay(text,object.sort_order,display,false)" class="displaySortBox"/>
-          <label type="checkbox" class="sortButton mainText hover-effect" :for="object.id">{{object.id}}</label>
+          <label type="checkbox" class="sortButton rounded-left mainText hover-effect" :for="object.id">{{object.id}}</label>
         </div> 
         <p class="sortCategory mainText">Show Only</p>
         <div v-for="(object) in displaySetup" class="Category">
           <input type='checkbox' :id="object.id" name="drone" :value="object.id" @click="uncheckAll(object.id,'displayCheckBox'),updateDisplay(text,sort,object.display_config)" class="displayCheckBox"/>
-          <label type='checkbox' class="sortButton mainText hover-effect" :for="object.id">{{object.id}}</label>  
+          <label type='checkbox' class="sortButton rounded-left mainText hover-effect" :for="object.id">{{object.id}}</label>  
         </div> 
       </div>
       <div id="cards"> 
@@ -129,5 +132,7 @@ import devopsLogo from '/public/pcicd.png'
       </div>
     </div>
     <div id="bottom-bar"><div id="bottom-shadow"></div></div>
-    <footer class="bgPrimary"></footer>
+    <footer class="bgPrimary">
+      <img id="pullup-logo" style="margin: 5%;" src="https://cdn.focus-home.com/admin/investor/website/pullup_logo.png">
+    </footer>
 </template>

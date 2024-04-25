@@ -38,8 +38,8 @@ const props = defineProps({
             <p class="mainText">{{projectName}}</p>
             <p class="secondaryText">{{studioName}}</p>
             </div>
-            <div class="status-icon rounded-left">
-                <span :class="'material-symbols-outlined bg-'+ status" style="font-size: 4vh;">{{message}}</span>
+            <div :class="'status-icon rounded-left bg-'+ status">
+                <span :class="'material-symbols-outlined'" style="font-size: 4vmin;">{{message}}</span>
             </div>
         </div>
         <div class="secondaryText textAlignRight">

@@ -1,11 +1,23 @@
 {
+  "public/TowerCICD-logo.png": {
+    "file": "assets/TowerCICD-logo-BpkP_M9C.png",
+    "src": "public/TowerCICD-logo.png"
+  },
+  "public/pcicd_v1.png": {
+    "file": "assets/pcicd_v1-obHWFpIL.png",
+    "src": "public/pcicd_v1.png"
+  },
   "src/main.ts": {
-    "file": "assets/main-iy6G48am.js",
+    "file": "assets/main-BnMhqBJk.js",
     "name": "main",
     "src": "src/main.ts",
     "isEntry": true,
     "css": [
-      "assets/main-D9Assfoa.css"
+      "assets/main-Kl4OARM0.css"
+    ],
+    "assets": [
+      "assets/TowerCICD-logo-BpkP_M9C.png",
+      "assets/pcicd_v1-obHWFpIL.png"
     ]
   }
 }

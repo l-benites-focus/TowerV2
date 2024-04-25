@@ -13,6 +13,7 @@ export default defineConfig({
         manifest: true,
         outDir: "../Backend/dist/src",
         target: 'esnext',
+        emptyOutDir: true,
         rollupOptions: {
          input: './src/main.ts',
        },

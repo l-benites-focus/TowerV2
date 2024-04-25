@@ -12,6 +12,9 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+p{
+  font-size: 1.70vmin;
+}
 @media (prefers-color-scheme: dark) {
   :root {
     background-color: #434343;
@@ -19,7 +22,7 @@
     --secondary-bg-color : #40404080;
     --main-text-color: #f2f2f2;
     --secondary-text-color:#f0f0f0;
-    --main-shadow-color: #9da7b1;
+    --main-shadow-color: black;
     --main-card-color: #515151;
   }
 }
@@ -147,7 +150,6 @@ footer{
   width: 10%; 
   height: 100%;
   float: left;
-  
 }
 #sort-bar{
   width: 90%;
@@ -195,8 +197,8 @@ footer{
 }
 #focus-Logo{
   display: flex;
-  height: 50%;
-  margin: 10%;
+  height: 60%;
+  margin: 5%;
 }
 #pullup-logo{
   margin: 5%;
@@ -205,11 +207,15 @@ footer{
 #tower-logo{
   display: flex;
   margin: 1%;
+  width: auto;
+  height: auto;
 }
 .rightHeaderContent{
   display: flex;
   align-items: center;
-  width: 50%; 
+  align-content: center;
+  width: 100%; 
+  justify-content: flex-end;
 }
 #body-content{
   display: flex;
@@ -260,19 +266,12 @@ footer{
   clip-path: inset(-10vh 0px 0px 0px);
   position: relative;
 }
-.textAlignCenter{
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 4em;
-}
 .textAlignRight{
   text-align: right;
 }
 .sortCategory{
   margin-left: 2%;
-  font-size: 1.5em;
+  font-size: 2.5vmin;
   height: 5%;
 }
 .sortButton{
@@ -285,7 +284,7 @@ footer{
   padding-right: 10%;
   font-family:Signika;
   margin-left: 2%;
-  font-size: 1.5em;
+  font-size: 2.5vmin;
   padding-left: 20%;
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
@@ -312,14 +311,15 @@ input[type='checkbox']:checked + .sortButton {
 }
 input[type="text"] {
   display: block;
-  width: calc(100% - 24px);
-  font-size: 18px;
+  font-size: 2vmin;
   font-weight: 600;
   padding: 10px;
   border: 2px solid var(--main-text-color);
   border-radius: 20vh;
   color:var(--main-text-color);
   transition-duration: 1s;
+  width:30vmin;
+  height:4.5vmin;
 }
 .hover-effect:hover{
   box-shadow: var(--main-shadow-color) 0px 20px 30px -10px;
@@ -345,7 +345,9 @@ textarea::-webkit-input-placeholder {
   overflow: hidden;
   flex-direction: column;
   align-items: flex-start;
-  color: #404040
+  color: #404040;
+  width: 10%;
+  box-shadow: var(--main-shadow-color) 0px 2px 4px 0px inset;
 }
 .bold-text{
   font-weight: bold;

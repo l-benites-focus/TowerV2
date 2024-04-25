@@ -92,7 +92,7 @@ const displaySetup = [
 import {ref} from 'vue';
 import card from './components/card.vue';
 import towerLogo from '/public/TowerCICD-logo.png'
-import devopsLogo from '/public/pcicd.png'
+import devopsLogo from '/public/pcicd_v1.png'
 </script>
 
 <template >
@@ -133,6 +133,6 @@ import devopsLogo from '/public/pcicd.png'
     </div>
     <div id="bottom-bar"><div id="bottom-shadow"></div></div>
     <footer class="bgPrimary">
-      <img id="pullup-logo" style="margin: 5%;" src="https://cdn.focus-home.com/admin/investor/website/pullup_logo.png">
+      <img id="pullup-logo" src="https://cdn.focus-home.com/admin/investor/website/pullup_logo.png">
     </footer>
 </template>

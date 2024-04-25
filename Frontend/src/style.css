@@ -6,7 +6,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-
+  --secondary-shadow-color:#40404080;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -57,15 +57,19 @@ body{
   margin: 0%;
 }
 #cards{
-  width: 75vw;
-  height: 100%;
   display: grid;
   gap: 2em;
-  grid-template-columns: repeat(auto-fit, minmax(30%,1fr));
-  align-content: space-evenly;
-  overflow: auto;
+  grid-template-columns: repeat(auto-fit, 28vw);
+  grid-template-rows: repeat(auto-fit, 17vh);
+  padding: 1em;
+  justify-content: start;
   flex:1;
-  padding: 1%;
+  overflow: auto;
+  
+}
+#cards-flex{
+  display: flex;
+  flex:1;
 }
 body {
   display: flex;
@@ -103,10 +107,7 @@ footer{
   animation-duration: 0.5s;
   animation-timing-function: ease-in-out;
   display: flex;
-  height: 100%;
-  width: 100%;
   border-radius: 5px;
-  transition: 0.3s;
   border: 1px solid transparent;
   background-color:var(--main-card-color);
 }
@@ -137,9 +138,12 @@ footer{
   box-sizing: border-box;
   padding-block: 5%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
  }
  .content div{
-  align-items: flex-start
+  align-items: flex-start;
  }
 .content p{
   margin-block: 1%;
@@ -150,10 +154,6 @@ footer{
   width: 10%; 
   height: 100%;
   float: left;
-}
-#sort-bar{
-  width: 90%;
-  height: 100%;
 }
 .rounded-left{
   border-top-left-radius: 5px;
@@ -207,29 +207,37 @@ footer{
 #tower-logo{
   display: flex;
   margin: 1%;
+  justify-content: space-between;
+  width: 30vw;
+  align-items: center
+}
+#tower-logo img{
   width: auto;
-  height: auto;
+  height: 100%;
 }
 .rightHeaderContent{
   display: flex;
   align-items: center;
   align-content: center;
-  width: 100%; 
+  width: 50vw; 
   justify-content: flex-end;
 }
 #body-content{
   display: flex;
+  flex:1;
   height: 80vh;
   width: 100vw;
   align-items: flex-start;
+  justify-content: flex-end;
   flex-direction: column;
 }
 #side-bar{
-  width: 9%;
+  width: 9vw;
   display: flex;
   flex-direction: column;
-  padding-left: 1%;
+  padding-left: 1vw;
   border-right: 1px solid rgba(128, 128, 128, 0.404);
+  
 }
 #side-bar:after { 
   border-right: 4px solid red; 
@@ -265,6 +273,11 @@ footer{
   margin-top: 1%;
   clip-path: inset(-10vh 0px 0px 0px);
   position: relative;
+}
+.bottom-Part{
+  display:flex;
+  justify-content: space-between;
+  padding-inline: 0.5em;
 }
 .textAlignRight{
   text-align: right;
@@ -315,7 +328,7 @@ input[type="text"] {
   font-weight: 600;
   padding: 10px;
   border: 2px solid var(--main-text-color);
-  border-radius: 20vh;
+  border-radius: 5px;
   color:var(--main-text-color);
   transition-duration: 1s;
   width:30vmin;
@@ -323,6 +336,7 @@ input[type="text"] {
 }
 .hover-effect:hover{
   box-shadow: var(--main-shadow-color) 0px 20px 30px -10px;
+  transition: 0.3s;
 }
 .sortButton:hover{
   cursor: pointer;
@@ -346,9 +360,67 @@ textarea::-webkit-input-placeholder {
   flex-direction: column;
   align-items: flex-start;
   color: #404040;
-  width: 10%;
-  box-shadow: var(--main-shadow-color) 0px 2px 4px 0px inset;
+  width: 12.5%;
+  box-shadow: var(--secondary-shadow-color) 0px 0px 5px 5px inset;
+  padding-inline: 0.1em;
+  padding-block: 0.1em;
 }
 .bold-text{
   font-weight: bold;
+}
+.status-icon span{
+  font-size: 3vmin;
+  display: flex;
+  padding-block: 0.2em;
+  padding-inline-start: 0.3em;
+}
+a{
+  text-decoration: none;
+}
+.link-button{
+  align-items: center;
+  appearance: none;
+  border-radius: 4px;
+  border-width: 0;
+  box-shadow: var(--secondary-shadow-color) 0 -5px 0 inset;
+  box-sizing: border-box;
+  cursor: pointer;
+  display: inline-flex;
+  font-family: "JetBrains Mono",monospace;
+  height: 3em;
+  width: 3em;
+  justify-content: center;
+  line-height: 1;
+  list-style: none;
+  overflow: hidden;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  transition: box-shadow .15s,transform .15s;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  will-change: box-shadow,transform;
+  font-size: 18px;
+  background-color: var(--main-card-color);
+}
+.link-button img{
+  max-height:80%;
+  max-width:80%;
+}
+.link-button p{
+  font-size: 70%;
+  padding: 0;
+  margin: 0;
+  font-family:Signika;
+}
+
+.link-button:hover {
+  box-shadow: inset var(--secondary-shadow-color) 0 7px 13px -3px, var(--secondary-bg-color) 0 -3px 0 inset;
+  cursor: pointer;
+}
+
+.link-button:active {
+  box-shadow: var(--secondary-shadow-color) 0 3px 7px inset;
 }

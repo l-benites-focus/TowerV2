@@ -1,5 +1,6 @@
 <script setup>
 import { ref, defineProps } from 'vue'
+import linkButton from '../components/linkButton.vue'
 const props = defineProps({
     projectName:String,
     studioName:String,
@@ -9,9 +10,13 @@ const props = defineProps({
   var status = "Up"
   var message = 'check_circle'
   var textClass = ''
+  var link = 'http://'+props.projectName+'-qkbld.westeurope.cloudapp.azure.com:8810/'
+  var src = 'https://th.bing.com/th/id/R.e8a90a30407503d3a7621ab9a591c443?rik=2nNQcPbJL%2bNjQA&riu=http%3a%2f%2fwiki.pmease.com%2fdownload%2fattachments%2f18809226%2fquickbuild-logo.png&ehk=dtkKK%2b35O4qUz9LMRcJGcfAUmzt3mBClHaxFL%2f8iv6g%3d&risl=&pid=ImgRaw&r=0'
   if (props.code != 200){
     status = "Info"
     message = 'help_center'
+    link = 'https://portal.azure.com/#home'
+    src = 'https://swimburger.net/media/ppnn3pcl/azure.png'
   }
   if(props.code>200){
     status = "Broken"
@@ -39,13 +44,19 @@ const props = defineProps({
             <p class="secondaryText">{{studioName}}</p>
             </div>
             <div :class="'status-icon rounded-left bg-'+ status">
-                <span :class="'material-symbols-outlined'" style="font-size: 4vmin;">{{message}}</span>
+                <span :class="'material-symbols-outlined'">{{message}}</span>
             </div>
         </div>
-        <div class="secondaryText textAlignRight">
+        <div class="bottom-Part">
+          <div>
+            <linkButton :link="link" desc="Documentation" :src="src"/>
+          </div>
+          <div class="secondaryText textAlignRight">
                 <p :class="textClass">{{code}}</p>
                 <p>{{uptime}}%</p>
         </div>
+        </div>
+
     </div>
 </div>
 </template>

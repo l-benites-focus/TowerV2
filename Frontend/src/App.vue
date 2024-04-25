@@ -91,6 +91,7 @@ const displaySetup = [
 <script setup lang="ts">
 import {ref} from 'vue';
 import card from './components/card.vue';
+import linkButton from './components/linkButton.vue'
 import towerLogo from '/public/TowerCICD-logo.png'
 import devopsLogo from '/public/pcicd_v1.png'
 </script>
@@ -99,10 +100,11 @@ import devopsLogo from '/public/pcicd_v1.png'
       <header :class = "'bgPrimary'">
       <div id="tower-logo">
         <img id="tower-logo" :src="towerLogo">
+        <input type="checkbox" class="bgPrimary hover-effect">
+        <input type="text" class="bgPrimary hover-effect" placeholder="Search a project..." id="inputField" @input="event => {if(event.target && ![1,2].includes((event.target as HTMLTextAreaElement).value.length))updateDisplay((event.target as HTMLTextAreaElement).value,sort,display,false)}">
       </div>
       <div class="rightHeaderContent">
-        <input type="checkbox" class="bgPrimary hover-effect">
-      <input type="text" class="bgPrimary hover-effect" placeholder="Search a project..." id="inputField" @input="event => {if(event.target && ![1,2].includes((event.target as HTMLTextAreaElement).value.length))updateDisplay((event.target as HTMLTextAreaElement).value,sort,display,false)}">
+      <linkButton link="https://focusent.atlassian.net/wiki/spaces/Devops/pages" desc="Documentation" src="https://cdn4.iconfinder.com/data/icons/logos-and-brands/512/30_Atlassian_logo_logos-1024.png"/>
         <div id="focus-Logo">
           <img  :src="devopsLogo"/>
         </div>
@@ -126,13 +128,16 @@ import devopsLogo from '/public/pcicd_v1.png'
           <label type='checkbox' class="sortButton rounded-left mainText hover-effect" :for="object.id">{{object.id}}</label>  
         </div> 
       </div>
-      <div id="cards"> 
+      <div id="cards-flex">
+        <div id="cards"> 
         <card :key="update" v-for="(object) in show" class="hover-effect" :projectName="object.projectName" :studioName=object.studioName :code=object.code :uptime="100"/>
+      </div>
       </div>
       </div>
     </div>
     <div id="bottom-bar"><div id="bottom-shadow"></div></div>
     <footer class="bgPrimary">
+      <toolname > <a href="https://dev.azure.com/FocusDevops/InnerSource">is part of the Pullup InnerSource Initiative !</a></toolname>
       <img id="pullup-logo" src="https://cdn.focus-home.com/admin/investor/website/pullup_logo.png">
     </footer>
 </template>
